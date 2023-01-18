@@ -6,7 +6,7 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
- testRunner:
+  testRunner:
    needs: checkLicense
    name: Test all modes 📝
    runs-on: ubuntu-latest
