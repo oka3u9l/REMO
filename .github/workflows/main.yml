@@ -1,4 +1,4 @@
-name: GameCI Template 🎮
+name: RemolifeCI 🎮
 
 on: push
 
@@ -135,3 +135,18 @@ jobs:
         with:
           name: build-Android
           path: build/Android
+
+      # Start notify telegram bot
+  notifyTelegram:
+    needs: buildAndroid
+    name: Notify to Telegram 🛎
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Notify Telegram
+        uses: yanzay/notify-telegram@v0.1.0
+        with:
+          chat: ${{ secrets.TELEGRAM_CHAT_ID }} # Get chat id using terminal: curl https://api.telegram.org/bot{bot_token}/getUpdates
+          token: ${{ secrets.TELEGRAM_TOKEN }} # Use Telegram @@BotFather
+          status: ${{ job.status }}
