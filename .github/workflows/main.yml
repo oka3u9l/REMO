@@ -137,7 +137,7 @@ jobs:
           path: build/Android
 
   notifyTelegram:
-    needs: buildAndroid
+    needs: [buildWindows, buildAndroid]
     name: Notify to Telegram 🛎
     runs-on: ubuntu-latest
     steps:
